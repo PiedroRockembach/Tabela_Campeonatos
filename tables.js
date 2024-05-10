@@ -1,5 +1,6 @@
 import { GetItem, SetItem } from "./helpers.js";
 import { SetPlayersList } from "./menu.js"
+const sortMode = document.querySelector(".sort-mode");
 export const SetPlayersTable = () => {
     const tableSection = document.querySelector('.table-section');
     tableSection.innerHTML = "";
@@ -8,36 +9,47 @@ export const SetPlayersTable = () => {
     playersTable.innerHTML = `
     <thead>
     <th>Nome</th>
-    <th>Gols</th>
-    <th>Assistencias</th>
-    <th>Vitorias</th>
-    <th>Derrotas</th>
+    <th class="goals-table">Gols</th>
+    <th class="assists-table">Assistencias</th>
+    <th class="wins-table">Vitorias</th>
+    <th class="loses-table">Derrotas</th>
     </thead>`;
     const jogadores = GetItem("jogadores");
 
+    jogadores.sort((a,b) => b[sortMode.value] - a[sortMode.value] );
+   
     jogadores.forEach((player) => {
     
         playersTable.appendChild(createPlayerRoll(player));
     });
     tableSection.appendChild(playersTable);
 }
+sortMode.addEventListener("change", () => SetPlayersTable());
 export const SetTeamsTable = () => {
     const tableSection = document.querySelector('.table-section');
     tableSection.innerHTML = "";
     const teamsTable = document.createElement("table");
+    
     teamsTable.classList.add("teams-table");
-    teamsTable.innerHTML = `
-    <thead>
-    <th>Nome</th>
-    <th>Participantes</th>
-    <th>Vitorias</th>
-    <th>Derrotas</th>
-    </thead>`;
+    const header = document.createElement("thead");
+    const goals = document.createElement("th");
+    const assists = document.createElement("th");
+    const wins = document.createElement("th");
+    const loses = document.createElement("th");
+    console.log(goals);
+    header.appendChild(goals);
+    header.appendChild(assists);
+    header.appendChild(wins);
+    header.appendChild(loses);
+    teamsTable.appendChild(header);
     const teams = GetItem("times");
     teams.forEach(team => {
         teamsTable.appendChild(createTeamRoll(team));
     });
     tableSection.appendChild(teamsTable);
+  
+    
+
 }
 const createTeamRoll = ({name, participants, wins, loses}) => {
     const roll = document.createElement("tr");

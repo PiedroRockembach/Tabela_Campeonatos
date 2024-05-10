@@ -20,6 +20,7 @@
                 Adicionar jogador
                 <form class="add-player">
                     <input type="text" class="add-player-input" id="add-player-input">
+                    <button type="submit">Adicionar jogador</button>
                 </form>
                 
             </Label>
@@ -39,6 +40,12 @@
     <main>
         <header class="header">
             <nav>
+                <select class="sort-mode" id="">
+                    <option value="goals">Gols</option>
+                    <option value="assists">Assistencias</option>
+                    <option value="wins">Vitorias</option>
+                    <option value="loses">Derrotas</option>
+                </select>
                 <Button class="jogadores-button">Jogadores</Button>
                 <Button class="teams-button">Times</Button>
             </nav>
