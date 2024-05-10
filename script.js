@@ -1,5 +1,4 @@
-import { GetItem, SetItem} from './helpers.js'
-import { SetPlayersTable } from './tables.js'
+import { SetPlayersTable, SetTeamsTable } from './tables.js'
 
 localStorage.setItem("jogadores", localStorage.getItem("jogadores") || JSON.stringify([]))
 localStorage.setItem("times", localStorage.getItem("times") || JSON.stringify([]))
@@ -14,27 +13,11 @@ window.addEventListener("load", () => {
         optionDisplay = !optionDisplay;
     });
 
-    const addPlayer = document.querySelector(".add-player");
-    const addPlayerInput = document.querySelector(".add-player-input");
-    addPlayer.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const jogadores = GetItem("jogadores");
-        const newPlayer = {
-            name: addPlayerInput.value,
-            goals: 0,
-            assists: 0,
-            wins: 0,
-            loses:0,
-            team: "",
-        }
-        jogadores.push(newPlayer);
-        SetItem("jogadores", jogadores);
-        addPlayerInput.value = "";
-        SetPlayersTable();
-
-        
-
-    })
+    const playersTableButton = document.querySelector(".jogadores-button");
+    const teamsTableButton = document.querySelector(".teams-button");
+    playersTableButton.addEventListener("click", () => SetPlayersTable())
+    teamsTableButton.addEventListener("click", () => SetTeamsTable())
     SetPlayersTable();
+
 })
 

@@ -6,6 +6,7 @@
     <script type="module" src="./script.js"></script>
     <script type="module" src="./helpers.js"></script>
     <script type="module" src="./tables.js"></script>
+    <script type="module" src="./menu.js"></script>
     <title>Tabela</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,7 +15,7 @@
    
     <aside class="menu">
         <button class="button-menu">Menu</button>
-        <nav class="options-menu">
+        <div class="options-menu">
             <Label for="add-player-input">
                 Adicionar jogador
                 <form class="add-player">
@@ -22,7 +23,17 @@
                 </form>
                 
             </Label>
-        </nav>
+            <Label for="add-team-input">
+                Adicionar Time
+                <form class="add-team">
+                    <input type="text" class="add-team-input" id="add-team-input">
+                    <button class="add-team-button" type="submit">Criar time</button>
+                </form>
+            </Label>
+            <ul class="players-list">
+
+            </ul>
+        </div>
         
     </aside>
     <main>
@@ -30,7 +41,6 @@
             <nav>
                 <Button class="jogadores-button">Jogadores</Button>
                 <Button class="teams-button">Times</Button>
-                <Button class="tournament-button">Torneio</Button>
             </nav>
         </header>
         <div class="table-section">
